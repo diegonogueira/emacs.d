@@ -12,6 +12,14 @@
   (package-refresh-contents)
   (package-install 'nova-theme))
 
+(setq inhibit-startup-message t)
+
+(setq locale-coding-system 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(set-selection-coding-system 'utf-8)
+(prefer-coding-system 'utf-8)
+
 (line-number-mode 1)
 (column-number-mode 1)
 
@@ -38,14 +46,11 @@
 
 (setq ring-bell-function 'ignore)
 
-(when window-system (global-prettify-symbols-mode t))
+(when window-system (add-hook 'prog-mode-hook 'hl-line-mode))
 
-(when window-system (global-hl-line-mode t))
-
-(setq inhibit-startup-message t)
 (setq scroll-conservatively 100)
 
-(defvar my-term-shell "/bin/bash")
+(defvar my-term-shell "/bin/zsh")
 (defadvice ansi-term (before force-bash)
   (interactive (list my-term-shell)))
 (ad-activate 'ansi-term)
@@ -54,6 +59,12 @@
   :ensure t
   :init
   (which-key-mode))
+
+(when window-system
+  (use-package pretty-mode
+    :ensure t
+    :config
+    (global-pretty-mode t)))
 
 (use-package hungry-delete
   :ensure t
@@ -176,7 +187,7 @@
 
 (use-package rainbow-mode
   :ensure t
-  :init (rainbow-mode 1))
+  :init (add-hook 'prog-mode-hook 'rainbow-mode))
 
 (use-package rainbow-delimiters
   :ensure t
@@ -213,3 +224,19 @@
   :ensure t
   :init
   (add-hook 'after-init-hook 'global-company-mode))
+
+(use-package popup-kill-ring
+  :ensure t
+  :bind ("M-y" . popup-kill-ring))
+
+(use-package swiper
+  :ensure t
+  :bind ("C-s" . swiper))
+
+(use-package mark-multiple
+  :ensure t
+  :bind ("C-c q" . 'mark-next-like-this))
+
+(use-package expand-region
+  :ensure t
+  :bind ("C-q" . er/expand-region))

@@ -18,6 +18,18 @@
     (package-install 'nova-theme))
 #+END_SRC
 * Minor settings
+** remove lame startup screen
+#+BEGIN_SRC emacs-lisp
+  (setq inhibit-startup-message t) 
+#+END_SRC
+** Set UTF-8 encoding
+#+BEGIN_SRC emacs-lisp
+  (setq locale-coding-system 'utf-8)
+  (set-terminal-coding-system 'utf-8)
+  (set-keyboard-coding-system 'utf-8)
+  (set-selection-coding-system 'utf-8)
+  (prefer-coding-system 'utf-8)
+#+END_SRC
 ** show lines and columns on the modeline
 #+BEGIN_SRC emacs-lisp
   (line-number-mode 1)
@@ -60,23 +72,18 @@
 #+BEGIN_SRC emacs-lisp
   (setq ring-bell-function 'ignore)
 #+END_SRC
-** pretty symbols
-#+BEGIN_SRC emacs-lisp
-  (when window-system (global-prettify-symbols-mode t))
-#+END_SRC
 ** line highlight
 #+BEGIN_SRC emacs-lisp
-  (when window-system (global-hl-line-mode t))
+  (when window-system (add-hook 'prog-mode-hook 'hl-line-mode))
 #+END_SRC
 ** better scrolling
 #+BEGIN_SRC emacs-lisp
-  (setq inhibit-startup-message t)
   (setq scroll-conservatively 100)
 #+END_SRC
 * Terminal
 ** Setting default shell to bash
 #+BEGIN_SRC emacs-lisp
-  (defvar my-term-shell "/bin/bash")
+  (defvar my-term-shell "/bin/zsh")
   (defadvice ansi-term (before force-bash)
     (interactive (list my-term-shell)))
   (ad-activate 'ansi-term)
@@ -88,6 +95,14 @@
     :ensure t
     :init
     (which-key-mode))
+#+END_SRC
+* Pretty-mode
+#+BEGIN_SRC emacs-lisp
+  (when window-system
+    (use-package pretty-mode
+      :ensure t
+      :config
+      (global-pretty-mode t)))
 #+END_SRC
 * Hungry-delete
 #+BEGIN_SRC emacs-lisp
@@ -265,7 +280,7 @@
 #+BEGIN_SRC emacs-lisp
   (use-package rainbow-mode
     :ensure t
-    :init (rainbow-mode 1))
+    :init (add-hook 'prog-mode-hook 'rainbow-mode))
 #+END_SRC
 ** rainbow-delimiters
 #+BEGIN_SRC emacs-lisp
@@ -310,4 +325,28 @@
     :ensure t
     :init
     (add-hook 'after-init-hook 'global-company-mode)) 
+#+END_SRC
+* Popup-kill-ring
+#+BEGIN_SRC emacs-lisp
+  (use-package popup-kill-ring
+    :ensure t
+    :bind ("M-y" . popup-kill-ring))
+#+END_SRC
+* Swiper
+#+BEGIN_SRC emacs-lisp
+  (use-package swiper
+    :ensure t
+    :bind ("C-s" . swiper))
+#+END_SRC
+* Mark-muliple
+#+BEGIN_SRC emacs-lisp
+  (use-package mark-multiple
+    :ensure t
+    :bind ("C-c q" . 'mark-next-like-this))
+#+END_SRC
+* Expand-region
+#+BEGIN_SRC emacs-lisp
+  (use-package expand-region
+    :ensure t
+    :bind ("C-q" . er/expand-region))
 #+END_SRC

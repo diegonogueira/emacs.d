@@ -15,7 +15,7 @@
  '(ansi-color-names-vector
    ["#3F3F3F" "#CC9393" "#7F9F7F" "#F0DFAF" "#8CD0D3" "#DC8CC3" "#93E0E3" "#DCDCCC"])
  '(ansi-term-color-vector
-   [unspecified "#2e2e2e" "#bc8383" "#7f9f7f" "#d0bf8f" "#6ca0a3" "#dc8cc3" "#8cd0d3" "#b6b6b6"])
+   [unspecified "#2e2e2e" "#bc8383" "#7f9f7f" "#d0bf8f" "#6ca0a3" "#dc8cc3" "#8cd0d3" "#b6b6b6"] t)
  '(company-quickhelp-color-background "#4F4F4F")
  '(company-quickhelp-color-foreground "#DCDCCC")
  '(custom-enabled-themes (quote (zenburn)))
@@ -46,7 +46,7 @@
     ("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3")))
  '(package-selected-packages
    (quote
-    (symon dmenu diminish spaceline company dashboard rainbow-delimiters sudo-edit hungry-delete switch-window beacon rainbow-mode avy org-bullets smex ido-vertical-mode grayscale-theme sgrayscale-theme spacemacs-theme nova-theme zenburn-theme use-package)))
+    (pretty-mode expand-region mark-multiple swiper popup-kill-ring symon dmenu diminish spaceline company dashboard rainbow-delimiters sudo-edit hungry-delete switch-window beacon rainbow-mode avy org-bullets smex ido-vertical-mode grayscale-theme sgrayscale-theme spacemacs-theme nova-theme zenburn-theme use-package)))
  '(pdf-view-midnight-colors (quote ("#DCDCCC" . "#383838")))
  '(vc-annotate-background "#3C4C55")
  '(vc-annotate-color-map
